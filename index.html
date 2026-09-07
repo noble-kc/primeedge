@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Edge - Building Maintenance & Services in Ajman, UAE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0d3558;
+            --primary-blue: #1976c9;
+            --accent-orange: #f89a1c;
+            --accent-light: #ffb347;
+            --text-dark: #183042;
+            --text-light: #5f6f7d;
+            --bg-light: #eef5fb;
+            --bg-white: #ffffff;
+            --border-color: #d7e3ee;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background:
+                radial-gradient(circle at top left, rgba(25, 118, 201, 0.08), transparent 28%),
+                radial-gradient(circle at top right, rgba(248, 154, 28, 0.1), transparent 22%),
+                linear-gradient(180deg, #f7fbff 0%, #ffffff 42%, #eef5fb 100%);
+        }
+
+        header {
+            background: linear-gradient(90deg, rgba(13, 53, 88, 0.97), rgba(25, 118, 201, 0.95));
+            color: white;
+            padding: 0.9rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(13, 53, 88, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            min-width: 0;
+        }
+
+        .logo img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 4px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.05;
+        }
+
+        .logo-text span {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .logo-text small {
+            font-size: 0.82rem;
+            opacity: 0.82;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(248, 154, 28, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(13, 53, 88, 0.98) 0%, rgba(25, 118, 201, 0.96) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: auto;
+            border-radius: 999px;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 18rem;
+            height: 18rem;
+            background: rgba(248, 154, 28, 0.13);
+            right: -4rem;
+            top: -5rem;
+            filter: blur(2px);
+        }
+
+        .hero::after {
+            width: 24rem;
+            height: 24rem;
+            background: rgba(255, 255, 255, 0.08);
+            left: -7rem;
+            bottom: -10rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #d85a1b;
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section.alt-bg {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(13, 53, 88, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            background:
+                radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 28%),
+                linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .service-image svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .service-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Quick Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 2px rgba(232, 116, 47, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 14px;
+            border: 1px solid rgba(25, 118, 201, 0.12);
+            border-top: 3px solid var(--accent-orange);
+            box-shadow: 0 8px 24px rgba(13, 53, 88, 0.06);
+        }
+
+        .info-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(13, 53, 88, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-blue));
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            .logo-text span {
+                font-size: 1.4rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-button.secondary {
+                display: block;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .service-icon {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="Prime Edge logo">
+                <div class="logo-text">
+                    <span>Prime Edge</span>
+                    <small>Building Maintenance</small>
+                </div>
+            </div>
+            <nav>
+                <a class="nav-link active" data-page="home">Home</a>
+                <a class="nav-link" data-page="services">Services</a>
+                <a class="nav-link" data-page="contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Premier Building Maintenance & Services</h1>
+                <p>Comprehensive maintenance solutions for residential and commercial properties across Ajman and the UAE</p>
+                <button class="cta-button" onclick="showPage('services')">Explore Services</button>
+                <button class="cta-button secondary" onclick="showPage('contact')">Get in Touch</button>
+            </div>
+        </section>
+
+        <section class="section container">
+            <h2 class="section-title">Why Choose Prime Edge?</h2>
+            <p class="section-subtitle">Over a decade of excellence in building maintenance and facility services</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Emergency Support</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt-bg">
+            <div class="container">
+                <h2 class="section-title">Our Core Services</h2>
+                <p class="section-subtitle">Professional expertise across all building maintenance disciplines</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                                <use href="#icon-building"></use>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>General Building Maintenance</h3>
+                            <p>Preventative and corrective maintenance to keep your property in optimal condition year-round.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-image">
+                            <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                                <use href="#icon-electrical"></use>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Electrical Services</h3>
+                            <p>Installation and maintenance of electrical fittings, fixtures, and systems for safety and reliability.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-image">
+                            <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                                <use href="#icon-decor"></use>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Painting & Décor</h3>
+                            <p>Professional tinting, painting, and decorative works to enhance your property's appearance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container">
+            <h2 class="section-title">Ready to Partner With Us?</h2>
+            <p class="section-subtitle">Contact Prime Edge today for a free consultation on your building maintenance needs</p>
+            <button class="cta-button" onclick="showPage('contact')">Request a Quote</button>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Our Comprehensive Services</h1>
+                <p>Full-spectrum building maintenance and facility services tailored to your needs</p>
+            </div>
+        </section>
+
+        <section class="section container">
+            <h2 class="section-title">Complete Service Portfolio</h2>
+            <p class="section-subtitle">Professional solutions for every aspect of building maintenance</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-building"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Buildings Maintenance</h3>
+                        <p>Comprehensive maintenance programs including structural inspections, repairs, and preventative services to extend your property's lifespan.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-electrical"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Electrical Fittings & Fixtures</h3>
+                        <p>Expert installation and maintenance of lighting, switches, outlets, and all electrical components for safety and efficiency.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-decor"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Décor Works</h3>
+                        <p>Interior and exterior decorative services including design consultation, material selection, and professional installation.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-electromechanical"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Electromechanical Equipment</h3>
+                        <p>Installation and maintenance of complex electromechanical systems, ensuring optimal performance and compliance with standards.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-tiling"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Floor & Wall Tiling Works</h3>
+                        <p>Professional tiling installation in kitchens, bathrooms, and living areas with precision craftsmanship and quality finishes.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-ac"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Air-Conditioning & Cooling Systems</h3>
+                        <p>Complete repair and maintenance of AC units, cooling equipment, and central air conditioning systems for comfort and efficiency.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-plumbing"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Sanitary Installation & Plumbing</h3>
+                        <p>Expert installation and repair of pipes, fixtures, and sanitary systems with focus on quality and durability.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-painting"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Painting & Tinting Works</h3>
+                        <p>Professional painting and tinting services for interior and exterior surfaces, transforming spaces with precision and expertise.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">
+                        <svg class="service-icon" viewBox="0 0 240 160" aria-hidden="true">
+                            <use href="#icon-waterproofing"></use>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3>Waterproofing & Repairs</h3>
+                        <p>Advanced waterproofing membranes, chemical injections, epoxy flooring, and concrete repairs to protect structural integrity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt-bg">
+            <div class="container">
+                <h2 class="section-title">Why Our Services Stand Out</h2>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Service Categories</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Specialized Technicians</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24hrs</div>
+                        <div class="stat-label">Response Time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">✓</div>
+                        <div class="stat-label">Quality Guaranteed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container">
+            <h2 class="section-title">Need a Custom Solution?</h2>
+            <p class="section-subtitle">Contact us to discuss your specific maintenance requirements</p>
+            <button class="cta-button" onclick="showPage('contact')">Contact Our Team</button>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Get In Touch</h1>
+                <p>We're here to help with your building maintenance needs</p>
+            </div>
+        </section>
+
+        <section class="section container">
+            <div class="two-column">
+                <div>
+                    <h2 class="section-title">Contact Information</h2>
+                    
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <h3>📍 Address</h3>
+                            <p>Yahya Building, Office-23</p>
+                            <p>City Center Sector</p>
+                            <p>Nakheel 1, Ajman, UAE</p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>📞 Phone</h3>
+                            <p><a href="tel:+971501870878">+971-501870878</a></p>
+                            <p><a href="tel:0526540566">052-654-0566</a></p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>✉️ Email</h3>
+                            <p><a href="mailto:primeedge.contracts@gmail.com">primeedge.contracts@gmail.com</a></p>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>🌐 Website</h3>
+                            <p><a href="https://www.primeedge.com" target="_blank">www.primeedge.com</a></p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--primary-dark); margin-top: 2rem; margin-bottom: 1rem;">Business Hours</h3>
+                    <p style="color: var(--text-light);">Saturday - Thursday: 8:00 AM - 6:00 PM</p>
+                    <p style="color: var(--text-light);">Friday: 9:00 AM - 5:00 PM</p>
+                    <p style="color: var(--text-light); margin-top: 1rem;"><strong>Emergency Support Available 24/7</strong></p>
+                </div>
+
+                <div>
+                    <h2 class="section-title">Send us a Message</h2>
+                    <div class="success-message" id="successMessage">
+                        Thank you! Your message has been sent successfully. We'll be in touch soon.
+                    </div>
+                    <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt-bg">
+            <div class="container">
+                <h2 class="section-title">Our Location</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3632.3142697374866!2d55.39769!3d25.37721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef5f6e6e6e6e6e7%3A0x7e7e7e7e7e7e7e7e!2sCity%20Center%20Sector%2C%20Ajman!5e0!3m2!1sen!2sae!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Prime Edge Building Maintenance. All rights reserved.</p>
+        <p>Serving Ajman and the UAE with professional building maintenance solutions.</p>
+    </footer>
+
+    <svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute; left:-9999px; overflow:hidden;">
+        <symbol id="icon-building" viewBox="0 0 240 160">
+            <defs>
+                <linearGradient id="buildingSky" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#1f76c9"/>
+                    <stop offset="100%" stop-color="#0d3558"/>
+                </linearGradient>
+            </defs>
+            <rect width="240" height="160" rx="18" fill="url(#buildingSky)"/>
+            <path d="M20 112c18-22 36-40 58-54l20 18 24-32 23 26 27-25 26 67" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 117c25-12 53-17 82-16 30 1 58 7 118 20" fill="none" stroke="#f89a1c" stroke-width="8" stroke-linecap="round"/>
+            <rect x="88" y="45" width="64" height="66" rx="4" fill="rgba(255,255,255,0.96)"/>
+            <rect x="100" y="56" width="12" height="16" rx="2" fill="#f89a1c"/>
+            <rect x="118" y="56" width="12" height="16" rx="2" fill="#f89a1c"/>
+            <rect x="100" y="78" width="12" height="16" rx="2" fill="#f89a1c"/>
+            <rect x="118" y="78" width="12" height="16" rx="2" fill="#f89a1c"/>
+            <path d="M55 74 90 26l35 48" fill="none" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M150 74 186 28l34 46" fill="none" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M34 119c27-18 80-24 126-19 30 4 55 12 79 23" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-electrical" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#1f76c9"/>
+            <circle cx="56" cy="40" r="18" fill="rgba(255,255,255,0.14)"/>
+            <circle cx="190" cy="118" r="30" fill="rgba(248,154,28,0.16)"/>
+            <path d="M124 20 86 86h33l-10 54 55-74h-34l16-46z" fill="#ffffff"/>
+            <rect x="34" y="102" width="42" height="18" rx="6" fill="rgba(255,255,255,0.92)"/>
+            <rect x="38" y="65" width="18" height="30" rx="5" fill="#f89a1c"/>
+            <rect x="64" y="65" width="18" height="30" rx="5" fill="#0d3558"/>
+            <path d="M42 58c4-12 16-19 29-19" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+            <path d="M199 36c-3 12-11 21-23 27" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-decor" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#0d3558"/>
+            <path d="M22 120c38-20 82-31 128-31 29 0 59 5 90 15" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="9" stroke-linecap="round"/>
+            <path d="M96 34 61 111h34l11-25 16 25h31L122 34z" fill="#ffffff"/>
+            <rect x="144" y="38" width="56" height="56" rx="10" fill="#f89a1c"/>
+            <circle cx="167" cy="59" r="7" fill="#ffffff"/>
+            <circle cx="185" cy="59" r="7" fill="#ffffff"/>
+            <rect x="148" y="89" width="48" height="10" rx="5" fill="rgba(255,255,255,0.9)"/>
+            <path d="M78 113c9-4 17-12 21-24" fill="none" stroke="#f89a1c" stroke-width="8" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-electromechanical" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#1976c9"/>
+            <circle cx="120" cy="80" r="37" fill="#ffffff"/>
+            <circle cx="120" cy="80" r="17" fill="#f89a1c"/>
+            <g fill="#0d3558">
+                <rect x="116" y="28" width="8" height="22" rx="4"/>
+                <rect x="116" y="110" width="8" height="22" rx="4"/>
+                <rect x="28" y="76" width="22" height="8" rx="4"/>
+                <rect x="190" y="76" width="22" height="8" rx="4"/>
+            </g>
+            <g fill="rgba(255,255,255,0.92)">
+                <rect x="114" y="18" width="12" height="16" rx="4"/>
+                <rect x="114" y="126" width="12" height="16" rx="4"/>
+                <rect x="18" y="72" width="16" height="16" rx="4"/>
+                <rect x="206" y="72" width="16" height="16" rx="4"/>
+            </g>
+            <path d="M70 82c12-16 26-24 50-24 21 0 39 7 53 24" fill="none" stroke="#f89a1c" stroke-width="7" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-tiling" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#0d3558"/>
+            <rect x="44" y="30" width="66" height="66" rx="8" fill="#ffffff"/>
+            <rect x="130" y="30" width="66" height="66" rx="8" fill="#f89a1c"/>
+            <rect x="44" y="116" width="66" height="22" rx="8" fill="#f89a1c"/>
+            <rect x="130" y="116" width="66" height="22" rx="8" fill="#ffffff"/>
+            <path d="M62 30v66M95 30v66M44 62h66M130 62h66M62 116v22M95 116v22M130 127h66" fill="none" stroke="rgba(13,53,88,0.2)" stroke-width="5"/>
+            <path d="M30 118c24-14 49-21 75-21 47 0 91 10 105 16" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="7" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-ac" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#1976c9"/>
+            <rect x="44" y="34" width="152" height="52" rx="18" fill="#ffffff"/>
+            <rect x="58" y="46" width="124" height="8" rx="4" fill="#0d3558"/>
+            <rect x="58" y="60" width="92" height="8" rx="4" fill="#f89a1c"/>
+            <path d="M64 112c12-10 22-10 34 0s22 10 34 0 22-10 34 0 22 10 34 0" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+            <path d="M84 94c-10 8-15 17-15 28" fill="none" stroke="#f89a1c" stroke-width="6" stroke-linecap="round"/>
+            <path d="M120 94c-10 8-15 17-15 28" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <path d="M156 94c-10 8-15 17-15 28" fill="none" stroke="#f89a1c" stroke-width="6" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-plumbing" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#0d3558"/>
+            <path d="M82 38c0-18 14-30 38-30s38 12 38 30c0 31-38 54-38 54S82 69 82 38z" fill="#f89a1c"/>
+            <path d="M120 30c-9 12-14 21-14 29 0 8 6 15 14 15s14-7 14-15c0-8-5-17-14-29z" fill="#ffffff"/>
+            <path d="M180 76c12 0 22 10 22 22 0 22-22 40-22 40s-22-18-22-40c0-12 10-22 22-22z" fill="#1976c9"/>
+            <path d="M176 55h-24c-8 0-14 6-14 14v10" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+            <path d="M42 124h54c12 0 22-10 22-22V86" fill="none" stroke="#f89a1c" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="180" cy="98" r="10" fill="#ffffff"/>
+        </symbol>
+
+        <symbol id="icon-painting" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#1976c9"/>
+            <path d="M52 112h114l-12 18H52z" fill="#ffffff"/>
+            <path d="M168 48h20l20 20-12 12-20-20z" fill="#f89a1c"/>
+            <rect x="158" y="32" width="16" height="64" rx="8" fill="#ffffff"/>
+            <rect x="52" y="42" width="70" height="16" rx="8" fill="#f89a1c"/>
+            <rect x="52" y="64" width="58" height="16" rx="8" fill="#ffffff"/>
+            <path d="M46 124c20-8 33-20 40-36" fill="none" stroke="#0d3558" stroke-width="8" stroke-linecap="round"/>
+            <path d="M28 78h82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="7" stroke-linecap="round"/>
+        </symbol>
+
+        <symbol id="icon-waterproofing" viewBox="0 0 240 160">
+            <rect width="240" height="160" rx="18" fill="#0d3558"/>
+            <path d="M120 24 70 46v36c0 34 20 58 50 74 30-16 50-40 50-74V46z" fill="#1976c9"/>
+            <path d="M120 42 88 56v22c0 24 11 41 32 53 21-12 32-29 32-53V56z" fill="#ffffff"/>
+            <path d="M120 58c-10 12-16 22-16 32 0 8 7 14 16 14s16-6 16-14c0-10-6-20-16-32z" fill="#f89a1c"/>
+            <path d="M60 124c17-7 38-10 60-10s43 3 60 10" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+            <path d="M42 46c11-8 22-12 33-12" fill="none" stroke="rgba(248,154,28,0.9)" stroke-width="7" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Remove active class from nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Set active nav link
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Navigation click handlers
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Reset form
+            event.target.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
